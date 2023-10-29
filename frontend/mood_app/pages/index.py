@@ -47,15 +47,21 @@ class ChatState(State):
    #should_redirect: bool = False 
 
     alert: bool = False
+    has_clicked = False
 
     def process_data(self):
         # call convex here answer
         # save to database
+        if self.has_clicked:
+            self.show = True
+            return
+
+        self.has_clicked = True
         try:
             client.mutation("posts:add", {"content":self.answer})
         except ConvexError as err:
             print(err.data)
-        return rx.redirect("/dashboard")
+        #return rx.redirect("/dashboard")
     
     def show_alert(self):
         self.alert = True
@@ -119,11 +125,9 @@ def index() -> rx.component:
                 width="100%",
             ),
             action_bar(),
+            rx.cond(
+                ChatState.show,
                 rx.box(
-    rx.button(
-        "Show Alert Dialog",
-        on_click=ChatState.change,
-    ),
     rx.alert_dialog(
         rx.alert_dialog_overlay(
             rx.alert_dialog_content(
@@ -142,6 +146,7 @@ def index() -> rx.component:
         is_open=ChatState.show,
     ),
 )
+            ),
         ),
         width="100%",
         height="100vh",
