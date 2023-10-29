@@ -16,8 +16,6 @@ import type {
 } from "convex/server";
 import type * as actions from "../actions";
 import type * as http from "../http";
-import type * as init from "../init";
-import type * as messages from "../messages";
 import type * as posts from "../posts";
 import type * as tasks from "../tasks";
 
@@ -32,8 +30,6 @@ import type * as tasks from "../tasks";
 declare const fullApi: ApiFromModules<{
   actions: typeof actions;
   http: typeof http;
-  init: typeof init;
-  messages: typeof messages;
   posts: typeof posts;
   tasks: typeof tasks;
 }>;

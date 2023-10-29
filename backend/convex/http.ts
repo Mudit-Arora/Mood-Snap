@@ -1,13 +1,7 @@
 import { httpRouter } from "convex/server";
-import { getPosts, postMessage } from "./actions";
+import { getPosts } from "./actions";
 
 const http = httpRouter();
-
-http.route({
-    path: "/postMessage",
-    method: "POST",
-    handler: postMessage,
-});
 
 http.route({
     path: "/getPosts",
