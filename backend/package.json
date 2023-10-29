@@ -1,0 +1,23 @@
+{
+  "name": "mood-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm-run-all dev:init --parallel dev:server dev:client",
+    "build": "tsc && vite build",
+    "dev:server": "convex dev",
+    "dev:client": "vite --open",
+    "dev:init": "convex dev --run init --until-success"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@types/node": "^20.8.9",
+    "convex": "^1.5.1",
+    "dotenv": "^16.3.1",
+    "typescript": "^5.2.2"
+  }
+}
